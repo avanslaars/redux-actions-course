@@ -16,6 +16,9 @@ export const createTodo = name => {
     },
     body: JSON.stringify({ name: name, isComplete: false })
   }).then(res => res.json())
+  // .then(() => {
+  //   throw new Error('Boom!')
+  // })
 }
 
 export const updateTodo = todo => {

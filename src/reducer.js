@@ -39,10 +39,10 @@ export const {
   {
     UPDATE_CURRENT: fixCase,
     SHOW_LOADER: () => true,
-    HIDE_LOADER: () => false
+    HIDE_LOADER: () => false,
+    ADD_TODO: [x => x, (_, name) => ({ name })]
   },
   LOAD_TODOS,
-  ADD_TODO,
   REPLACE_TODO,
   REMOVE_TODO
 )
@@ -65,10 +65,15 @@ export const fetchTodos = () => {
 export const saveTodo = name => {
   return dispatch => {
     dispatch(showLoader())
-    createTodo(name).then(res => {
-      dispatch(addTodo(res))
-      dispatch(hideLoader())
-    })
+    createTodo(name)
+      .then(res => {
+        dispatch(addTodo(res))
+        dispatch(hideLoader())
+      })
+      .catch(err => {
+        dispatch(addTodo(err, name))
+        dispatch(hideLoader())
+      })
   }
 }
 
@@ -108,11 +113,19 @@ export const getVisibleTodos = (todos, filter) => {
 
 export default handleActions(
   {
-    ADD_TODO: (state, action) => {
-      return {
-        ...state,
-        currentTodo: '',
-        todos: state.todos.concat(action.payload)
+    ADD_TODO: {
+      next: (state, action) => {
+        return {
+          ...state,
+          currentTodo: '',
+          todos: state.todos.concat(action.payload)
+        }
+      },
+      throw: (state, action) => {
+        return {
+          ...state,
+          message: `There was a problem saving the todo ${action.meta.name}`
+        }
       }
     },
     LOAD_TODOS: {
