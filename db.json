@@ -2,12 +2,12 @@
   "todos": [
     {
       "name": "Install redux-actions",
-      "isComplete": false,
+      "isComplete": true,
       "id": 1
     },
     {
       "name": "simplify action creators",
-      "isComplete": false,
+      "isComplete": true,
       "id": 2
     },
     {
