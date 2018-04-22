@@ -21,13 +21,19 @@ const REMOVE_TODO = 'REMOVE_TODO'
 const SHOW_LOADER = 'SHOW_LOADER'
 const HIDE_LOADER = 'HIDE_LOADER'
 
-export const updateCurrent = createAction(UPDATE_CURRENT)
+const fixCase = str => {
+  return str.split('').reduce((acc, letter, idx) => {
+    return idx === 0 ? letter.toUpperCase() : `${acc}${letter.toLowerCase()}`
+  }, '')
+}
+
+export const updateCurrent = createAction(UPDATE_CURRENT, fixCase)
 export const loadTodos = createAction(LOAD_TODOS)
 export const addTodo = createAction(ADD_TODO)
 export const replaceTodo = createAction(REPLACE_TODO)
 export const removeTodo = createAction(REMOVE_TODO)
-export const showLoader = () => ({ type: SHOW_LOADER, payload: true })
-export const hideLoader = () => ({ type: HIDE_LOADER, payload: false })
+export const showLoader = createAction(SHOW_LOADER, () => true)
+export const hideLoader = createAction(HIDE_LOADER, () => false)
 
 export const fetchTodos = () => {
   return dispatch => {
