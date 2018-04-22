@@ -5134,6 +5134,10 @@ reduce-reducers@^0.1.0:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.5.tgz#ff77ca8068ff41007319b8b4b91533c7e0e54576"
 
+reduce-reducers@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.2.0.tgz#e9c7c988a045087357a8781c0175258eb6eb92b8"
+
 redux-actions@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-2.3.0.tgz#4e9967d86594b8c235bab6e08960b5c185f296d3"

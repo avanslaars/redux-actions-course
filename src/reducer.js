@@ -5,6 +5,7 @@ import {
   destroyTodo
 } from './lib/todoServices'
 import { createActions, handleAction } from 'redux-actions'
+import reduceReducers from 'reduce-reducers'
 
 const initState = {
   todos: [],
@@ -113,30 +114,68 @@ const addTodoReducer = handleAction(
   initState
 )
 
-export default (state = initState, action) => {
-  switch (action.type) {
-    case ADD_TODO:
-      return addTodoReducer(state, action)
-    case LOAD_TODOS:
-      return { ...state, todos: action.payload }
-    case UPDATE_CURRENT:
-      return { ...state, currentTodo: action.payload }
-    case REPLACE_TODO:
-      return {
-        ...state,
-        todos: state.todos.map(
-          t => (t.id === action.payload.id ? action.payload : t)
-        )
-      }
-    case REMOVE_TODO:
-      return {
-        ...state,
-        todos: state.todos.filter(t => t.id !== action.payload)
-      }
-    case SHOW_LOADER:
-    case HIDE_LOADER:
-      return { ...state, isLoading: action.payload }
-    default:
-      return state
-  }
-}
+const loadTodosReducer = handleAction(
+  LOAD_TODOS,
+  (state, action) => {
+    return { ...state, todos: action.payload }
+  },
+  initState
+)
+
+const updateCurrentReducer = handleAction(
+  UPDATE_CURRENT,
+  (state, action) => {
+    return { ...state, currentTodo: action.payload }
+  },
+  initState
+)
+
+const replaceTodoReducer = handleAction(
+  REPLACE_TODO,
+  (state, action) => {
+    return {
+      ...state,
+      todos: state.todos.map(
+        t => (t.id === action.payload.id ? action.payload : t)
+      )
+    }
+  },
+  initState
+)
+
+const removeTodoReducer = handleAction(
+  REMOVE_TODO,
+  (state, action) => {
+    return {
+      ...state,
+      todos: state.todos.filter(t => t.id !== action.payload)
+    }
+  },
+  initState
+)
+
+const showLoaderReducer = handleAction(
+  SHOW_LOADER,
+  (state, action) => {
+    return { ...state, isLoading: action.payload }
+  },
+  initState
+)
+
+const hideLoaderReducer = handleAction(
+  HIDE_LOADER,
+  (state, action) => {
+    return { ...state, isLoading: action.payload }
+  },
+  initState
+)
+
+export default reduceReducers(
+  addTodoReducer,
+  loadTodosReducer,
+  updateCurrentReducer,
+  replaceTodoReducer,
+  removeTodoReducer,
+  showLoaderReducer,
+  hideLoaderReducer
+)
