@@ -2,6 +2,12 @@
 
 This is the source project for the Reduce Redux Boilerplate Course on egghead.io.
 
+### Instructions
+
+1. run `yarn` to install dependencies
+2. In a terminal window, start the dev api server with `yarn dev-server`
+3. In a 2nd terminal tab, run the applicaiton with `yarn dev`
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
