@@ -4,7 +4,7 @@ import {
   updateTodo,
   destroyTodo
 } from './lib/todoServices'
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
 
 const initState = {
   todos: [],
@@ -27,13 +27,25 @@ const fixCase = str => {
   }, '')
 }
 
-export const updateCurrent = createAction(UPDATE_CURRENT, fixCase)
-export const loadTodos = createAction(LOAD_TODOS)
-export const addTodo = createAction(ADD_TODO)
-export const replaceTodo = createAction(REPLACE_TODO)
-export const removeTodo = createAction(REMOVE_TODO)
-export const showLoader = createAction(SHOW_LOADER, () => true)
-export const hideLoader = createAction(HIDE_LOADER, () => false)
+export const {
+  updateCurrent,
+  loadTodos,
+  addTodo,
+  replaceTodo,
+  removeTodo,
+  showLoader,
+  hideLoader
+} = createActions(
+  {
+    UPDATE_CURRENT: fixCase,
+    SHOW_LOADER: () => true,
+    HIDE_LOADER: () => false
+  },
+  LOAD_TODOS,
+  ADD_TODO,
+  REPLACE_TODO,
+  REMOVE_TODO
+)
 
 export const fetchTodos = () => {
   return dispatch => {
