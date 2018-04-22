@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "name": "Install redux-actions",
+      "isComplete": false,
+      "id": 1
+    },
+    {
+      "name": "simplify action creators",
+      "isComplete": false,
+      "id": 2
+    },
+    {
+      "name": "Transform action payloads",
+      "isComplete": false,
+      "id": 3
+    },
+    {
+      "name": "Handle actions",
+      "isComplete": false,
+      "id": 4
+    },
+    {
+      "name": "Handle errors",
+      "isComplete": false,
+      "id": 5
+    }
+  ]
+}
